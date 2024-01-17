@@ -12,7 +12,7 @@ User = get_user_model()
 
 
 class AddProductAPIView(GenericAPIView):
-    permission_classes = (IsAdminPermission,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = ProductSerializerForPost
 
     def post(self, request, format=None):  # noqa
@@ -40,4 +40,4 @@ class ProductLictAPIView(ListAPIView):
 
 class UpdateProductDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
-    permission_classes = (IsAdminPermission,)
+    permission_classes = (IsAuthenticated,)
