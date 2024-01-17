@@ -1,6 +1,8 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+
+import dj_database_url
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -86,15 +88,19 @@ WSGI_APPLICATION = 'Thecorner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'USER': os.environ.get('DB_USER'),
+#         'NAME': os.environ.get('DB_NAME'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': os.environ.get('DB_HOST'),
+#         'PORT': os.environ.get('DB_PORT'),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': os.environ.get('DB_USER'),
-        'NAME': os.environ.get('DB_NAME'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-    }
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
 }
 
 # Password validation
