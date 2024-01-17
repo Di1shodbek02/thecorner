@@ -15,4 +15,5 @@ class UserRole(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return f'{self.user.name}, {self.role}'
